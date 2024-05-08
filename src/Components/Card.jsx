@@ -1,22 +1,39 @@
 import React from "react";
 import {useState} from "react"
+import { GrFavorite } from "react-icons/gr";
+import { MdOutlineFavorite } from "react-icons/md";
 
 
 
-function Card({id,name,info,image,price,removecityname}){
+function Card({id,name,info,image,price,removecityname,showcity}){
     const description=` ${info.substring(0,120)}...`;
     
     const[readMore, setreadMore]=useState(false);
+    const [addfavourite, setAddfavourite]= useState(true);
     
     function readmoreHandeler(){
-       if(readMore===false)
-       {
-         setreadMore(true);
-       }
-       else{
-        setreadMore(false)
-       }
+
+        setreadMore(!readMore);
     }
+    const array=[];
+    function favouriteCity(id){
+        setAddfavourite(!addfavourite)
+// TO BE CHECKED
+        array.push(id);
+        // console.log(array);
+
+        // if(array.find(id)===undefined)
+        // {
+        //     array.push(id);
+        //     console.log(array);
+        // }
+        // else{
+        //     array.pop(id);
+        //     console.log(array);
+        // }
+
+    }
+    console.log(array);
   
     return(
             <div className="card-item">
@@ -36,6 +53,12 @@ function Card({id,name,info,image,price,removecityname}){
                 <div>
                     <button onClick={()=>removecityname(id) } className="btn-remove">Not Interested</button>
                 </div>
+             
+                <button onClick={()=> favouriteCity(id)}>
+                    {
+                        addfavourite?(<GrFavorite />):(<MdOutlineFavorite />)
+                    }
+                </button>
               
             </div>
     );

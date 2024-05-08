@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+
 import data from "./data";
 import ToplevelCard from "./Components/ToplevelCard";
 
@@ -10,6 +11,14 @@ const App = () => {
     setData(newTours);
 
   }
+  function showcity(id){
+    const favouriteCity=value.filter(tour=>tour.id===id);
+    setData(favouriteCity);
+
+  }
+  // function favourite(id){
+
+  // }
   // () => setData(data)
 //  if all city are removed
 
@@ -24,7 +33,7 @@ const App = () => {
 
   return (
     <div>
-       <ToplevelCard toures={value} removecity={removeToure}></ToplevelCard>
+       <ToplevelCard toures={value} removecity={removeToure} showcity={showcity}></ToplevelCard>
     </div>
   );
 };
